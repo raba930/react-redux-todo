@@ -3,17 +3,75 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
         <title>React App</title>
+        <style type="text/css">
+           .preloader {
+                height: 50px;
+                width: 50px;
+                top: 50vh;
+                background-color: pink;
+                -webkit-animation: preloader 5s infinite linear;
+                animation: preloader 5s infinite linear;
+                margin: auto;
+                margin-top: 45vh;
+           }
+
+           @-webkit-keyframes preloader {
+              0% {
+                 -webkit-transform: perspective(180px) rotateX(0deg) rotateY(0deg);
+                 background-color: #F4D03F;
+              }
+              25% {
+                 -webkit-transform: perspective(180px) rotateX(-180.1deg) rotateY(0deg);
+                 background-color: #52B3D9;
+              }
+              50% {
+                 -webkit-transform: perspective(180px) rotateX(-180deg) rotateY(179.9deg);
+                 background-color: #EC644B;
+              }
+              75% {
+                 -webkit-transform: perspective(180px) rotateX(-360deg) rotateY(179.9deg);
+                 background-color: #68C3A3;
+              }
+              100% {
+                 -webkit-transform: perspective(180px) rotateX(-360deg) rotateY(360deg);
+                 background-color: #F4D03F;
+              }
+           }
+
+           @keyframes preloader {
+              0% {
+                 transform: perspective(180px) rotateX(0deg) rotateY(0deg);
+                 -webkit-transform: perspective(180px) rotateX(0deg) rotateY(0deg);
+                 background-color: #F4D03F;
+              }
+              25% {
+                 transform: perspective(180px) rotateX(-180.1deg) rotateY(0deg);
+                 -webkit-transform: perspective(180px) rotateX(-180.1deg) rotateY(0deg);
+                 background-color: #52B3D9;
+              }
+              50% {
+                 transform: perspective(180px) rotateX(-180deg) rotateY(179.9deg);
+                 -webkit-transform: perspective(180px) rotateX(-180deg) rotateY(179.9deg);
+                 background-color: #EC644B;
+              }
+              75% {
+                 transform: perspective(180px) rotateX(-180deg) rotateY(179.9deg);
+                 -webkit-transform: perspective(180px) rotateX(-360deg) rotateY(179.9deg);
+                 background-color: #68C3A3;
+              }
+              100% {
+                 transform: perspective(180px) rotateX(0deg) rotateY(360deg);
+                 -webkit-transform: perspective(180px) rotateX(-360deg) rotateY(360deg);
+                 background-color: #F4D03F;
+              }
+           }
+
+        </style>
     </head>
     <body>
-        <header style="height: 10vh" class="light-blue accent-3 valign-wrapper">
-            <h4 class="center-align">REACT-REDUX TODO LIST</h4>
-        </header>
-        <div class="container">
-            <div class="row">
-                <div id="root" class="col m6 s10 offset-m3 offset-s1"></div>
-            </div>
+        <div id="root">
+            <div class="preloader"></div>
         </div>
     </body>
 </html>

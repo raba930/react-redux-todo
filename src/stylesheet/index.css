@@ -12,3 +12,7 @@ span.remove {
 h4 {
     margin: auto !important;
 }
+
+header {
+    height: 10vh
+}
