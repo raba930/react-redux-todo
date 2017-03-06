@@ -36,8 +36,8 @@ class App extends Component {
     render() {
         return (
             <div className="todoWrap">
-                <input type="text" value={this.state.inputVal} className="todoInput" placeholder="testing placeholder" onChange={this.updateInput} onKeyPress={this.keyDown} />
-                <button onClick={this.addNewTodo}>Add todo</button>
+                <input type="text" value={this.state.inputVal} className="todoInput" placeholder="Todo text" onChange={this.updateInput} onKeyPress={this.keyDown} />
+                <button className="btn light-blue darken-4" onClick={this.addNewTodo}>Add todo</button>
                 <Todos todos={this.props.todos} removeTodo={this.removeTodo}/>
             </div>
         );
@@ -45,12 +45,12 @@ class App extends Component {
 }
 
 function mapStateToProps(state, prop) {
-    return state.todo
+    return state.todo;
 }
 function mapDispatchToProps(dispatch) {
     return {
         addTodo: todo => dispatch(todoActions.addTodo(todo)),
         removeTodo: id => dispatch(todoActions.removeTodo(Number(id)))
-    }
+    };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);
