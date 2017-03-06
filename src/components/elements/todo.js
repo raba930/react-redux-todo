@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 class App extends Component {
     render() {
         return (
-            <li className="card-panel teal lighten-2">
-                <input type="checkbox" id={this.props.index} onClick={this.props.removeTodo} />
+            <li className="card-panel light-blue lighten-1">
                 {this.props.value}
+                <span className="remove" id={this.props.index} onClick={this.props.removeTodo} > X </span>
             </li>
         );
     }
