@@ -12,3 +12,9 @@ export const removeTodo = (id) => {
         id
     };
 };
+export const toggleComplete = (id) => {
+    return {
+        type: constants.TOGGLE_COMPLETE,
+        id
+    };
+};
