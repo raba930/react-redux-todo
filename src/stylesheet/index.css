@@ -4,10 +4,12 @@ textarea:focus, input:focus {
   -moz-box-shadow: 0 1px 0 0 #00b0ff !important;
   box-shadow: 0 1px 0 0 #00b0ff !important;
 }
-span.remove {
-    float: right;
+span.remove, span.complete {
     cursor: pointer;
     color: white;
+}
+.controls {
+    float: right;
 }
 h4 {
     margin: auto !important;
@@ -15,4 +17,12 @@ h4 {
 
 header {
     height: 10vh
+}
+
+span.remove i:hover {
+    color: #b71c1c;
+}
+
+span.complete i:hover {
+    color: #1b5e20;
 }
