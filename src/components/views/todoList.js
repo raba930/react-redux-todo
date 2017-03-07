@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Todos from '../elements/todos';
 import * as todoActions from '../../actions/todo';
+// TODO: solve .closest without jquery
+import $ from 'jquery';
 
 class App extends Component {
     constructor(props) {
@@ -20,7 +22,7 @@ class App extends Component {
         this.setState({inputVal: ''});
     }
     removeTodo(ev) {
-        let id = ev.target.id;
+        let id =  $(ev.target).closest('li').attr('id');
         this.props.removeTodo(id);
     }
     updateInput(ev) {
