@@ -1,5 +1,5 @@
-import * as actions from '../actions/todo'
-import * as constants from '../actions/constants'
+import * as actions from '../actions/todo';
+import * as constants from '../actions/constants';
 
 describe('actions', () => {
     it('should create an action to add a todo', () => {
@@ -7,15 +7,23 @@ describe('actions', () => {
         const expectedAction = {
             type: constants.ADD_TODO,
             text
-        }
-        expect(actions.addTodo(text)).toEqual(expectedAction)
-    })
+        };
+        expect(actions.addTodo(text)).toEqual(expectedAction);
+    });
     it('should create an action to remove a todo', () => {
         const id = 5;
         const expectedAction = {
             type: constants.REMOVE_TODO,
             id
-        }
-        expect(actions.removeTodo(id)).toEqual(expectedAction)
-    })
-})
+        };
+        expect(actions.removeTodo(id)).toEqual(expectedAction);
+    });
+    it('should create an action to toggle a todo status', () => {
+        const id = 5;
+        const expectedAction = {
+            type: constants.TOGGLE_COMPLETE,
+            id
+        };
+        expect(actions.toggleComplete(id)).toEqual(expectedAction);
+    });
+});
