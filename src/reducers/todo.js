@@ -22,6 +22,15 @@ export default(state = initialState, action) => {
                 return index !== action.id;
             })
         });
+    case constants.TOGGLE_COMPLETE:
+        return Object.assign({}, state, {
+            todos: state.todos.map((item, index) => {
+                if (index === action.id) {
+                    item.completed = !item.completed;
+                }
+                return item;
+            })
+        });
     default:
         return state;
     }

@@ -15,6 +15,7 @@ class App extends Component {
         this.removeTodo = this.removeTodo.bind(this);
         this.updateInput = this.updateInput.bind(this);
         this.keyDown = this.keyDown.bind(this);
+        this.toggleComplete = this.toggleComplete.bind(this);
     }
     addNewTodo() {
         if (!this.state.inputVal) return;
@@ -22,8 +23,12 @@ class App extends Component {
         this.setState({inputVal: ''});
     }
     removeTodo(ev) {
-        let id =  $(ev.target).closest('li').attr('id');
+        let id = $(ev.target).closest('li').attr('id');
         this.props.removeTodo(id);
+    }
+    toggleComplete(ev) {
+        let id = $(ev.target).closest('li').attr('id');
+        this.props.toggleComplete(id);
     }
     updateInput(ev) {
         let value = ev.target.value;
@@ -40,7 +45,7 @@ class App extends Component {
             <div className="todoWrap">
                 <input type="text" value={this.state.inputVal} className="todoInput" placeholder="Todo text" onChange={this.updateInput} onKeyPress={this.keyDown} />
                 <button className="btn light-blue darken-4" onClick={this.addNewTodo}>Add todo</button>
-                <Todos todos={this.props.todos} removeTodo={this.removeTodo}/>
+                <Todos todos={this.props.todos} removeTodo={this.removeTodo} toggleComplete={this.toggleComplete}/>
             </div>
         );
     }
@@ -52,7 +57,8 @@ function mapStateToProps(state, prop) {
 function mapDispatchToProps(dispatch) {
     return {
         addTodo: todo => dispatch(todoActions.addTodo(todo)),
-        removeTodo: id => dispatch(todoActions.removeTodo(Number(id)))
+        removeTodo: id => dispatch(todoActions.removeTodo(Number(id))),
+        toggleComplete: id => dispatch(todoActions.toggleComplete(Number(id)))
     };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);
