@@ -26,3 +26,19 @@ span.remove i:hover {
 span.complete i:hover {
     color: #1b5e20;
 }
+.btn {
+  padding: 0 2px !important;
+  white-space: normal !important;
+}
+.todoInput {
+  width: 85% !important;
+}
+.addBtn {
+  width: 15%;
+}
+.controlBtn {
+  width: 49%;
+}
+.controlBtn.remove {
+  float: right;
+}

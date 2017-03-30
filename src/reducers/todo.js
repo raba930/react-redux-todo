@@ -31,6 +31,12 @@ export default(state = initialState, action) => {
                 return item;
             })
         });
+    case constants.REMOVE_COMPLETE:
+        return Object.assign({}, state, {
+            todos: state.todos.filter(item => {
+                return item.completed === false;
+            })
+        });
     default:
         return state;
     }
