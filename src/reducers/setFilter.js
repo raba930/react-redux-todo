@@ -1,7 +1,7 @@
 import * as constants from '../actions/constants';
 
 const initialState = {
-    filter: 'ACTIVE'
+    filter: 'SHOW_ALL'
 };
 
 export default(state = initialState, action) => {
