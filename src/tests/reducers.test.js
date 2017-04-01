@@ -5,7 +5,7 @@ describe('todos reducer', () => {
     it('should return the initial state', () => {
         expect(
             reducer(undefined, {})
-        ).toEqual({filter: 'ACTIVE', todos: []});
+        ).toEqual({todos: []});
     });
     it('should handle ADD_TODO', () => {
         expect(

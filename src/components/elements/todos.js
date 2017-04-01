@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Todo from '../elements/todo';
-import { connect } from 'react-redux';
+import getVisibleTodos from '../../reducers/getVisibleTodos';
 
-const Todos = (props) => {
-    let todos = props.todos.map((todo, todoInd) => {
-        if (props.filter === 'ACTIVE' && todo.completed) return;
-
-        return <Todo todo={todo} key={todoInd} index={todoInd} removeTodo={props.removeTodo} toggleComplete={props.toggleComplete} />;
+const Todos = ({ todos, filter, removeTodo, toggleComplete }) => {
+    const visibleTodos = getVisibleTodos(todos, filter);
+    const parsedTodos = visibleTodos.map((todo, todoInd) => {
+        return <Todo todo={todo} key={todoInd} index={todoInd} removeTodo={removeTodo} toggleComplete={toggleComplete} />;
     });
     return (
         <ul>
-            {todos}
+            {parsedTodos}
         </ul>
     );
-}
+};
 
 export default Todos;

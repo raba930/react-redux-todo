@@ -1,10 +1,10 @@
 import todo from './todo';
-import filter from './filter';
+import setFilter from './setFilter';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
     todo,
-    filter
+    setFilter
 });
 
 export default rootReducer;
