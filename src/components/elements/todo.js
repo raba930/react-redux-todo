@@ -12,13 +12,15 @@ const Todo = (props) => {
     }
     return (
         <li id={props.index} className={parsedClass}>
-            {props.todo.text}
+            <span className="todo-text">
+                {props.todo.text}
+            </span>
             <section className="controls">
                 <span className="complete" onClick={props.toggleComplete} >
-                    <i className="small material-icons"> {icon} </i>
+                    <i className="small material-icons">{icon}</i>
                 </span>
                 <span className="remove" onClick={props.removeTodo} >
-                    <i className="small material-icons"> delete </i>
+                    <i className="small material-icons">delete</i>
                 </span>
             </section>
         </li>
