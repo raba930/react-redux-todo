@@ -1,0 +1,177 @@
+exports[`Todo snapshots Completed todo 1`] = `
+<li
+  className="card-panel light-green lighten-1"
+  id={undefined}>
+  <span
+    className="todo-text">
+    second
+  </span>
+  <section
+    className="controls">
+    <span
+      className="complete"
+      onClick={undefined}>
+      <i
+        className="small material-icons">
+        restore
+      </i>
+    </span>
+    <span
+      className="remove"
+      onClick={undefined}>
+      <i
+        className="small material-icons">
+        delete
+      </i>
+    </span>
+  </section>
+</li>
+`;
+
+exports[`Todo snapshots Not completed todo 1`] = `
+<li
+  className="card-panel light-blue lighten-1"
+  id={undefined}>
+  <span
+    className="todo-text">
+    first
+  </span>
+  <section
+    className="controls">
+    <span
+      className="complete"
+      onClick={undefined}>
+      <i
+        className="small material-icons">
+        done
+      </i>
+    </span>
+    <span
+      className="remove"
+      onClick={undefined}>
+      <i
+        className="small material-icons">
+        delete
+      </i>
+    </span>
+  </section>
+</li>
+`;
+
+exports[`Todos snapshots Active todos 1`] = `
+<ul>
+  <li
+    className="card-panel light-blue lighten-1"
+    id={0}>
+    <span
+      className="todo-text">
+      first
+    </span>
+    <section
+      className="controls">
+      <span
+        className="complete"
+        onClick={undefined}>
+        <i
+          className="small material-icons">
+          done
+        </i>
+      </span>
+      <span
+        className="remove"
+        onClick={undefined}>
+        <i
+          className="small material-icons">
+          delete
+        </i>
+      </span>
+    </section>
+  </li>
+</ul>
+`;
+
+exports[`Todos snapshots All todos 1`] = `
+<ul>
+  <li
+    className="card-panel light-blue lighten-1"
+    id={0}>
+    <span
+      className="todo-text">
+      first
+    </span>
+    <section
+      className="controls">
+      <span
+        className="complete"
+        onClick={undefined}>
+        <i
+          className="small material-icons">
+          done
+        </i>
+      </span>
+      <span
+        className="remove"
+        onClick={undefined}>
+        <i
+          className="small material-icons">
+          delete
+        </i>
+      </span>
+    </section>
+  </li>
+  <li
+    className="card-panel light-green lighten-1"
+    id={1}>
+    <span
+      className="todo-text">
+      second
+    </span>
+    <section
+      className="controls">
+      <span
+        className="complete"
+        onClick={undefined}>
+        <i
+          className="small material-icons">
+          restore
+        </i>
+      </span>
+      <span
+        className="remove"
+        onClick={undefined}>
+        <i
+          className="small material-icons">
+          delete
+        </i>
+      </span>
+    </section>
+  </li>
+  <li
+    className="card-panel light-green lighten-1"
+    id={2}>
+    <span
+      className="todo-text">
+      third
+    </span>
+    <section
+      className="controls">
+      <span
+        className="complete"
+        onClick={undefined}>
+        <i
+          className="small material-icons">
+          restore
+        </i>
+      </span>
+      <span
+        className="remove"
+        onClick={undefined}>
+        <i
+          className="small material-icons">
+          delete
+        </i>
+      </span>
+    </section>
+  </li>
+</ul>
+`;
