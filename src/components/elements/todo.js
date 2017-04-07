@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Todo = (props) => {
     let parsedClass = 'card-panel';
@@ -10,6 +11,7 @@ const Todo = (props) => {
         parsedClass += ' light-blue lighten-1';
         icon = 'done';
     }
+    const infoLink = '/details/' + props.index;
     return (
         <li id={props.index} className={parsedClass}>
             <span className="todo-text">
@@ -18,6 +20,11 @@ const Todo = (props) => {
             <section className="controls">
                 <span className="complete" onClick={props.toggleComplete} >
                     <i className="small material-icons">{icon}</i>
+                </span>
+                <span className="info" onClick={props.todoInfo} >
+                    <Link to={infoLink}>
+                        <i className="small material-icons">info_outline</i>
+                    </Link>
                 </span>
                 <span className="remove" onClick={props.removeTodo} >
                     <i className="small material-icons">delete</i>

@@ -1,7 +1,7 @@
 import * as actions from '../actions/todo';
 import * as constants from '../actions/constants';
 
-describe('actions', () => {
+describe('Todo actions', () => {
     it('should create an action to add a todo', () => {
         const text = 'Finish docs';
         const expectedAction = {
@@ -41,5 +41,15 @@ describe('actions', () => {
             filter
         };
         expect(actions.setFilter(filter)).toEqual(expectedAction);
+    });
+    it('should create an action to add a description to todo', () => {
+        const todoInfo = 'Finish docs';
+        const id = 2;
+        const expectedAction = {
+            type: constants.ADD_TODO_INFO,
+            id,
+            todoInfo
+        };
+        expect(actions.addTodoInfo(id, todoInfo)).toEqual(expectedAction);
     });
 });

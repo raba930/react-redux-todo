@@ -12,9 +12,17 @@ export default(state = initialState, action) => {
                 ...state.todos,
                 {
                     text: action.text,
-                    completed: false
+                    completed: false,
+                    info: ''
                 }
             ]
+        });
+    case constants.ADD_TODO_INFO:
+        return Object.assign({}, state, {
+            todos: state.todos.map((item, index) => {
+                if (index === action.id) item.info = action.todoInfo;
+                return item;
+            })
         });
     case constants.REMOVE_TODO:
         return Object.assign({}, state, {

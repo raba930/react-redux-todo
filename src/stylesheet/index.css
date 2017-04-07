@@ -4,7 +4,7 @@ textarea:focus, input:focus {
   -moz-box-shadow: 0 1px 0 0 #00b0ff !important;
   box-shadow: 0 1px 0 0 #00b0ff !important;
 }
-span.remove, span.complete {
+span.remove, span.complete, span.info, a > i {
     cursor: pointer;
     color: white;
 }
@@ -26,9 +26,20 @@ span.remove i:hover {
 span.complete i:hover {
     color: #1b5e20;
 }
+span.info i:hover {
+    color: #01579b;
+}
 .btn {
   padding: 0 2px !important;
   white-space: normal !important;
+}
+.save-details, .cancel-btn {
+  padding: 0 15px !important;
+  margin-right: 5px !important;
+  float: right;
+}
+.detailsWrap .done-icon {
+  float: right;
 }
 .todoInput {
   width: 85% !important;
