@@ -30,3 +30,10 @@ export const setFilter = filter => {
         filter
     };
 };
+export const addTodoInfo = (id, todoInfo) => {
+    return {
+        type: constants.ADD_TODO_INFO,
+        id,
+        todoInfo
+    };
+};

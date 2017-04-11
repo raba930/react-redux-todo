@@ -1,7 +1,6 @@
 import React from 'react';
-import TodoList from './containers/todoList';
 
-const App = () => {
+const App = ({ children }) => {
     return (
         <div className="App">
             <header className="light-blue accent-3 valign-wrapper">
@@ -10,7 +9,7 @@ const App = () => {
             <div className="container">
                 <div className="row">
                     <div className="col m6 s10 offset-m3 offset-s1">
-                        <TodoList />
+                        {children}
                     </div>
                 </div>
             </div>

@@ -5,3 +5,4 @@ export const REMOVE_COMPLETE = 'REMOVE_COMPLETE';
 export const SHOW_ALL = 'SHOW_ALL';
 export const SHOW_ACTIVE = 'SHOW_ACTIVE';
 export const SET_FILTER = 'SET_FILTER';
+export const ADD_TODO_INFO = 'ADD_TODO_INFO';
