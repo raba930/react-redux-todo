@@ -8,14 +8,16 @@
       rel="stylesheet">
         <style type="text/css">
            .preloader {
-                height: 50px;
-                width: 50px;
-                top: 50vh;
-                background-color: pink;
-                -webkit-animation: preloader 5s infinite linear;
-                animation: preloader 5s infinite linear;
-                margin: auto;
-                margin-top: 45vh;
+              height: 50px;
+              width: 50px;
+              -webkit-animation: preloader 5s infinite linear;
+              animation: preloader 5s infinite linear;
+              background-color: pink;
+              margin: auto;
+           }
+           .homePreloader {
+              top: 50vh;
+              margin-top: 45vh;
            }
 
            @-webkit-keyframes preloader {
@@ -73,7 +75,7 @@
     </head>
     <body>
         <div id="root">
-            <div class="preloader"></div>
+            <div class="homePreloader preloader"></div>
         </div>
     </body>
 </html>
