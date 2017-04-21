@@ -6,7 +6,7 @@ import App from './components/App';
 import Details from './components/containers/Details';
 import TodoList from './components/containers/TodoList';
 import Login from './components/containers/Login';
-import Register from './components/views/Register';
+import Register from './components/containers/Register';
 import Store from './store';
 import { checkToken } from './actions/account';
 import './stylesheet/index.css';

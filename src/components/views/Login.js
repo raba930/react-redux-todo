@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class Login extends Component {
     constructor(props) {
@@ -31,7 +32,7 @@ class Login extends Component {
                     <input ref="pass" placeholder="*******" id="first_name" type="password" />
                 </div>
                 <button onClick={this.login} className="btn light-blue darken-4">Login</button>
-                <button className="btn light-blue darken-4">Register</button>
+                <Link to='/register'><button className="btn light-blue darken-4">Register</button></Link>
             </div>
         );
     }
@@ -39,6 +40,6 @@ class Login extends Component {
 
 Login.contextTypes = {
     router: PropTypes.object.isRequired
-}
+};
 
 export default Login;
