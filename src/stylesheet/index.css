@@ -8,9 +8,6 @@ span.remove, span.complete, span.info, a > i {
     cursor: pointer;
     color: white;
 }
-.controls {
-    float: right;
-}
 h4 {
     margin: auto !important;
 }
@@ -19,16 +16,6 @@ header {
     height: 10vh
 }
 
-span.remove i:hover {
-    color: #b71c1c;
-}
-
-span.complete i:hover {
-    color: #1b5e20;
-}
-span.info i:hover {
-    color: #01579b;
-}
 .btn {
   padding: 0 2px !important;
   white-space: normal !important;
