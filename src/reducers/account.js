@@ -10,7 +10,7 @@ const initialState = {
 
 export default(state = initialState, action) => {
     switch (action.type) {
-    case constants.LOG_IN_LOADING:
+    case constants.ACC_LOADING:
         return Object.assign({}, state, {
             loading: true
         });
@@ -22,7 +22,20 @@ export default(state = initialState, action) => {
             error: false,
             loading:false
         });
+    case constants.SIGN_UP_REQ_SUC:
+        return Object.assign({}, state, {
+            loggedIn: true,
+            username: action.email,
+            userToken: action.token,
+            error: false,
+            loading:false
+        });
     case constants.LOG_IN_REQ_FAIL:
+        return Object.assign({}, state, {
+            error: action.error,
+            loading:false
+        });
+    case constants.SIGN_UP_REQ_FAIL:
         return Object.assign({}, state, {
             error: action.error,
             loading:false
