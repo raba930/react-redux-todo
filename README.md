@@ -18,7 +18,7 @@ execute in application root folder
 
 
 ## Backend
-execute in application /backend folder
+execute in application `/backend` folder
 ### Mongo shell setup
 `$ mongo`
 
@@ -36,7 +36,7 @@ execute in application /backend folder
 `$ make build-prod`
 
 ## Frontend
-execute in application /frontend folder
+execute in application `/frontend` folder
 ### run app in dev mode
     npm install
     npm start
