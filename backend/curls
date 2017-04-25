@@ -1,0 +1,39 @@
+// create acc
+
+curl -X POST \
+  http://127.0.0.1:3000/api/register \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -H 'postman-token: 2a006abc-653d-a7b5-53b7-b1d20f96836c' \
+  -d '{
+    "username": "asdf",
+    "password": "123"
+}'
+
+
+// login
+
+curl -X POST \
+  http://127.0.0.1:3000/api/login \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -H 'postman-token: 18ebd7bc-c412-199b-9921-e7c7a482ec98' \
+  -d '{
+    "username": "asdf",
+    "password": "123"
+}'
+
+
+// ping
+
+curl -X POST \
+  http://127.0.0.1:3000/ping \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -H 'postman-token: cfcd15d2-5bfe-0297-d93f-f12919c47e49' \
+  -d '{
+    "token": "<token>"
+}'
+
+
+curl 'http://127.0.0.1:3000/api/login' -H 'Pragma: no-cache' -H 'Origin: http://localhost:3001' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: en-US,en;q=0.8,de;q=0.6,hr;q=0.4' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.89 Safari/537.36' -H 'content-type: application/json' -H 'Accept: */*' -H 'Cache-Control: no-cache' -H 'Referer: http://localhost:3001/login' -H 'Connection: keep-alive' --data-binary '{"email":"asdf","password":"123"}' --compressed

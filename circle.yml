@@ -1,6 +1,9 @@
 dependencies:
   override:
-    - yarn
+    # - make install
+    - make install-frontend
 test:
   override:
-    - yarn test
+    # change npm with yarn
+    - cd frontend && npm run test
+    # - npm run test --prefix /backend
