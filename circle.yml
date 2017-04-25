@@ -5,5 +5,5 @@ dependencies:
 test:
   override:
     # change npm with yarn
-    - cd frontend && npm run test
+    - cd frontend && yarn run test
     # - npm run test --prefix /backend

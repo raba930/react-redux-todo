@@ -18,7 +18,7 @@ help:
 build-frontend:
 	rm -rf backend/public
 	mkdir -p backend/public
-	npm run build --prefix frontend/
+	cd frontend && yarn run build
 	cp -a frontend/build/. backend/public/
 
 install:
@@ -26,21 +26,21 @@ install:
 	$(MAKE) install-backend
 
 install-frontend:
-	npm install --prefix frontend/
+	cd frontend && yarn
 
 install-backend:
-	npm install --prefix backend/
+	cd backend && yarn
 
 start-prod:
 	$(MAKE) install
 	$(MAKE) build-frontend
-	npm run start --prefix backend/
+	cd backend && yarn run start
 
 start-backend:
-	npm run start --prefix backend/
+	cd backend &&  yarn run start
 
 start-frontend:
-	PORT=3001 npm run start --prefix frontend/
+	cd frontend && PORT=3001 yarn run start
 
 start-frontend-tests:
-	npm run test --prefix frontend/
+	cd frontend && yarn run test
