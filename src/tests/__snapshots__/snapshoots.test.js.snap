@@ -6,22 +6,22 @@ exports[`Details snapshots Completed todo 1`] = `
       className="todo-text">
       second
     </span>
-    <i
-      className="small material-icons done-icon">
+    <section
+      className="small material-icons gesLkU">
       done
-    </i>
+    </section>
   </h3>
   <textarea
-    className="materialize-textarea"
+    className="materialize-textarea cYOoHJ"
     defaultValue="s"
     placeholder="Aditional informations about this todo" />
   <button
-    className="btn light-blue darken-4 cancel-btn"
+    className="btn light-blue darken-4 jeYtjl"
     onClick={[Function]}>
      Cancel 
   </button>
   <button
-    className="btn light-blue darken-4 save-details"
+    className="btn light-blue darken-4 cdkWzD"
     onClick={[Function]}>
      Save 
   </button>
@@ -38,16 +38,16 @@ exports[`Details snapshots Not completed todo 1`] = `
     </span>
   </h3>
   <textarea
-    className="materialize-textarea"
+    className="materialize-textarea cYOoHJ"
     defaultValue="f"
     placeholder="Aditional informations about this todo" />
   <button
-    className="btn light-blue darken-4 cancel-btn"
+    className="btn light-blue darken-4 jeYtjl"
     onClick={[Function]}>
      Cancel 
   </button>
   <button
-    className="btn light-blue darken-4 save-details"
+    className="btn light-blue darken-4 cdkWzD"
     onClick={[Function]}>
      Save 
   </button>
@@ -63,32 +63,32 @@ exports[`Todo snapshots Completed todo 1`] = `
     second
   </span>
   <section
-    className="controls">
+    className="controls gesLkU">
     <span
-      className="complete"
+      className="ehlOiC"
       onClick={undefined}>
       <i
-        className="small material-icons">
+        className="small material-icons complete">
         restore
       </i>
     </span>
     <span
-      className="info"
+      className="iAwBni"
       onClick={undefined}>
       <a
         href="/details/undefined"
         onClick={[Function]}>
         <i
-          className="small material-icons">
+          className="small material-icons info">
           info_outline
         </i>
       </a>
     </span>
     <span
-      className="remove"
+      className="ehEPdz"
       onClick={undefined}>
       <i
-        className="small material-icons">
+        className="small material-icons remove">
         delete
       </i>
     </span>
@@ -105,32 +105,32 @@ exports[`Todo snapshots Not completed todo 1`] = `
     first
   </span>
   <section
-    className="controls">
+    className="controls gesLkU">
     <span
-      className="complete"
+      className="ehlOiC"
       onClick={undefined}>
       <i
-        className="small material-icons">
+        className="small material-icons complete">
         done
       </i>
     </span>
     <span
-      className="info"
+      className="iAwBni"
       onClick={undefined}>
       <a
         href="/details/undefined"
         onClick={[Function]}>
         <i
-          className="small material-icons">
+          className="small material-icons info">
           info_outline
         </i>
       </a>
     </span>
     <span
-      className="remove"
+      className="ehEPdz"
       onClick={undefined}>
       <i
-        className="small material-icons">
+        className="small material-icons remove">
         delete
       </i>
     </span>
@@ -139,7 +139,8 @@ exports[`Todo snapshots Not completed todo 1`] = `
 `;
 
 exports[`Todos snapshots Active todos 1`] = `
-<ul>
+<ul
+  className="dNIryj">
   <li
     className="card-panel light-blue lighten-1"
     id={0}>
@@ -148,32 +149,32 @@ exports[`Todos snapshots Active todos 1`] = `
       first
     </span>
     <section
-      className="controls">
+      className="controls gesLkU">
       <span
-        className="complete"
+        className="ehlOiC"
         onClick={undefined}>
         <i
-          className="small material-icons">
+          className="small material-icons complete">
           done
         </i>
       </span>
       <span
-        className="info"
+        className="iAwBni"
         onClick={undefined}>
         <a
           href="/details/0"
           onClick={[Function]}>
           <i
-            className="small material-icons">
+            className="small material-icons info">
             info_outline
           </i>
         </a>
       </span>
       <span
-        className="remove"
+        className="ehEPdz"
         onClick={undefined}>
         <i
-          className="small material-icons">
+          className="small material-icons remove">
           delete
         </i>
       </span>
@@ -183,7 +184,8 @@ exports[`Todos snapshots Active todos 1`] = `
 `;
 
 exports[`Todos snapshots All todos 1`] = `
-<ul>
+<ul
+  className="dNIryj">
   <li
     className="card-panel light-blue lighten-1"
     id={0}>
@@ -192,32 +194,32 @@ exports[`Todos snapshots All todos 1`] = `
       first
     </span>
     <section
-      className="controls">
+      className="controls gesLkU">
       <span
-        className="complete"
+        className="ehlOiC"
         onClick={undefined}>
         <i
-          className="small material-icons">
+          className="small material-icons complete">
           done
         </i>
       </span>
       <span
-        className="info"
+        className="iAwBni"
         onClick={undefined}>
         <a
           href="/details/0"
           onClick={[Function]}>
           <i
-            className="small material-icons">
+            className="small material-icons info">
             info_outline
           </i>
         </a>
       </span>
       <span
-        className="remove"
+        className="ehEPdz"
         onClick={undefined}>
         <i
-          className="small material-icons">
+          className="small material-icons remove">
           delete
         </i>
       </span>
@@ -231,32 +233,32 @@ exports[`Todos snapshots All todos 1`] = `
       second
     </span>
     <section
-      className="controls">
+      className="controls gesLkU">
       <span
-        className="complete"
+        className="ehlOiC"
         onClick={undefined}>
         <i
-          className="small material-icons">
+          className="small material-icons complete">
           restore
         </i>
       </span>
       <span
-        className="info"
+        className="iAwBni"
         onClick={undefined}>
         <a
           href="/details/1"
           onClick={[Function]}>
           <i
-            className="small material-icons">
+            className="small material-icons info">
             info_outline
           </i>
         </a>
       </span>
       <span
-        className="remove"
+        className="ehEPdz"
         onClick={undefined}>
         <i
-          className="small material-icons">
+          className="small material-icons remove">
           delete
         </i>
       </span>
@@ -270,32 +272,32 @@ exports[`Todos snapshots All todos 1`] = `
       third
     </span>
     <section
-      className="controls">
+      className="controls gesLkU">
       <span
-        className="complete"
+        className="ehlOiC"
         onClick={undefined}>
         <i
-          className="small material-icons">
+          className="small material-icons complete">
           restore
         </i>
       </span>
       <span
-        className="info"
+        className="iAwBni"
         onClick={undefined}>
         <a
           href="/details/2"
           onClick={[Function]}>
           <i
-            className="small material-icons">
+            className="small material-icons info">
             info_outline
           </i>
         </a>
       </span>
       <span
-        className="remove"
+        className="ehEPdz"
         onClick={undefined}>
         <i
-          className="small material-icons">
+          className="small material-icons remove">
           delete
         </i>
       </span>

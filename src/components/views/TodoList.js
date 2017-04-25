@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import Todos from '../elements/todos';
+import Todos from '../elements/Todos';
+import Button from '../elements/Button';
 // TODO: solve .closest without jquery
 import $ from 'jquery';
 
@@ -39,12 +40,15 @@ class TodoList extends Component {
         if (isEnter) this.addNewTodo();
     }
     render() {
+        const inputStyle = {
+            width: '85%'
+        };
         return (
             <div className="todoWrap">
-                <input type="text" ref="todoInp" className="todoInput" placeholder="Todo text" onKeyPress={this.keyDown} />
-                <button className="btn light-blue darken-4 addBtn" onClick={this.addNewTodo}>Add</button>
-                <button className="btn light-blue darken-4 controlBtn filter" onClick={this.toggleCompletedTodos}>{this.props.filter.filter === 'SHOW_ALL' ? 'Hide' : 'Show'} completed todos</button>
-                <button className="btn light-blue darken-4 controlBtn remove" onClick={this.removeCompletedTodos}>Remove completed todos</button>
+                <input type="text" ref="todoInp" className="todoInput" placeholder="Todo text" onKeyPress={this.keyDown} style={inputStyle} />
+                <Button right onClick={this.addNewTodo}>Add</Button>
+                <Button control onClick={this.toggleCompletedTodos}>{this.props.filter.filter === 'SHOW_ALL' ? 'Hide' : 'Show'} completed todos</Button>
+                <Button control right onClick={this.removeCompletedTodos}>Remove completed todos</Button>
                 <Todos todos={this.props.todos.todos} filter={this.props.filter.filter} removeTodo={this.removeTodo} toggleComplete={this.toggleComplete}/>
             </div>
         );
