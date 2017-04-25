@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Todos from '../components/elements/todos';
-import Todo from '../components/elements/todo';
+import Todos from '../components/elements/Todos';
+import Todo from '../components/elements/Todo';
 import Details from '../components/views/Details';
 import { MemoryRouter } from 'react-router-dom';
 
