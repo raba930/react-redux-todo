@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import Input from '../elements/Input';
+import Button from '../elements/Button';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class Login extends Component {
@@ -7,8 +10,8 @@ class Login extends Component {
         this.register = this.register.bind(this);
     }
     register() {
-        let username = this.refs.username.value;
-        let pass = this.refs.pass.value;
+        let username = this.username.value;
+        let pass = this.password.value;
         this.props.register(username, pass)
             .then((action) => {
                 if (!action.error) {
@@ -22,15 +25,12 @@ class Login extends Component {
         else return (
             <div className="loginWrap">
                 {this.props.error ? <span>{this.props.error}</span> : ''}
-                <div className="row">
-                    <span> Username </span>
-                    <input ref="username" placeholder="John" id="first_name" type="text" />
-                </div>
-                <div className="row">
-                    <span> Password </span>
-                    <input ref="pass" placeholder="*******" id="first_name" type="password" />
-                </div>
-                <button className="btn light-blue darken-4" onClick={this.register}>Register</button>
+                <Input innerRef={username => { this.username = username; }} placeholder="John" type="text"></Input>
+                <Input innerRef={password => { this.password = password; }} placeholder="******" type="password"></Input>
+                <Button onClick={this.register} comfort right>Register</Button>
+                <Link to='/login'>
+                    <Button comfort right>Login</Button>
+                </Link>
             </div>
         );
     }

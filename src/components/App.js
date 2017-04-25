@@ -1,18 +1,16 @@
 import React from 'react';
+import AppHeader from './elements/AppHeader';
+import AppBody from './elements/AppBody';
 
 const App = ({ children }) => {
     return (
         <div className="App">
-            <header className="light-blue accent-3 valign-wrapper">
-                <h4 className="center-align">REACT-REDUX TODO LIST</h4>
-            </header>
-            <div className="container">
-                <div className="row">
-                    <div className="col m6 s10 offset-m3 offset-s1">
-                        {children}
-                    </div>
-                </div>
-            </div>
+            <AppHeader>
+                REACT-REDUX TODO LIST
+            </AppHeader>
+            <AppBody>
+                {children}
+            </AppBody>
         </div>
     );
 };

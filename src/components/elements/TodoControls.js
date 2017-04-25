@@ -17,6 +17,9 @@ const CompleteSpan = styled.span`
 `;
 const InfoSpan = styled.span`
     ${spanDefault}
+    & a i {
+        color: white;
+    }
     & i:hover {
         color: #01579b;
     }
@@ -47,4 +50,4 @@ export default ({toggleComplete, todoInfo, removeTodo, completed, index}) => {
             </RemoveSpan>
        </Section>
     );
-}
+};

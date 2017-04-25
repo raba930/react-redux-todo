@@ -9,8 +9,6 @@ import Login from './components/containers/Login';
 import Register from './components/containers/Register';
 import Store from './store';
 import { checkToken } from './actions/account';
-import './stylesheet/index.css';
-import 'materialize-css';
 import 'materialize-css/bin/materialize.css';
 
 const store = Store();
@@ -25,7 +23,7 @@ const PrivateRoute = ({ render, ...rest }) => (
             }}/>
         )
     )}/>
-)
+);
 
 let renderUI = () => {
     ReactDOM.render(
@@ -49,12 +47,12 @@ let renderUI = () => {
         </Provider>,
         document.getElementById('root')
     );
-}
+};
 
 
 if (localStorage.accessToken) {
     store.dispatch(checkToken(localStorage.accessToken))
-        .then(renderUI)
+        .then(renderUI);
 } else {
     renderUI();
 }

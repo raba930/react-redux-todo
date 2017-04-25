@@ -1,4 +1,8 @@
 import React, {Component} from 'react';
+import DetailsHeader from '../elements/DetailsHeader';
+import Button from '../elements/Button';
+import TodoDetails from '../elements/TodoDetails';
+
 
 class Details extends Component {
     constructor(props) {
@@ -8,7 +12,7 @@ class Details extends Component {
     }
     addInfo() {
         const id = Number(this.props.match.params.id);
-        const text = this.refs.infoArea.value;
+        const text = this.infoArea.value;
         this.props.addTodoInfo(id, text);
         this.goToHomepage();
     }
@@ -18,13 +22,14 @@ class Details extends Component {
     render() {
         return (
             <div className="detailsWrap">
-                <h3>
-                    <span className="todo-text">{this.props.todo.text}</span>
-                    {this.props.todo.completed && <i className="small material-icons done-icon">done</i>}
-                </h3>
-                <textarea ref="infoArea" defaultValue={this.props.todo.info} className="materialize-textarea" placeholder="Aditional informations about this todo" />
-                <button onClick={this.goToHomepage} className="btn light-blue darken-4 cancel-btn"> Cancel </button>
-                <button onClick={this.addInfo} className="btn light-blue darken-4 save-details"> Save </button>
+                <DetailsHeader text={this.props.todo.text} completed={this.props.todo.completed}></DetailsHeader>
+                <TodoDetails
+                    innerRef={infoArea => { this.infoArea = infoArea; }}
+                    placeholder="Aditional informations about this todo"
+                    defaultValue={this.props.todo.info}>
+                </TodoDetails>
+                <Button right onClick={this.goToHomepage}> Cancel </Button>
+                <Button right comfort onClick={this.addInfo}> Save </Button>
             </div>
         );
     }
