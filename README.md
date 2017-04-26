@@ -1,5 +1,4 @@
 # todo-app
-express mongo react
 
 # Global commands
 execute in application root folder
@@ -45,9 +44,14 @@ execute in application `/frontend` folder
 ### build
     npm run build
 
+### Sys Dependencies
+* nodejs (https://github.com/nodesource/distributions#debmanual)
+* mongoDB (https://docs.mongodb.com/master/administration/install-on-linux/)
+* yarn (https://yarnpkg.com/lang/en/docs/install/)
 
 ### stack
 * express.js
+* mongodb
 * passport.js
 * react
 * create-react-app
