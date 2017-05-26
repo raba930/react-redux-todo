@@ -1,45 +1,41 @@
-var should = require("should");
-var mongoose = require('mongoose');
-var Account = require("../models/account.js");
-var db;
+import should from 'should';
+import mongoose from 'mongoose';
+import supertest from 'supertest';
+import Account from '../models/Account'
+let db, request;
 
-describe('Account', function() {
+describe('Account', () => {
 
-    before(function(done) {
-        db = mongoose.connect('mongodb://localhost/test');
-            done();
+    before(done => {
+        mongoose.connect('mongodb://localhost/test');
+        db = mongoose.connection;
+        db.once('open', function() {
+            request = supertest('http://localhost:3000')
+            Account.remove({}, err => {
+                if (err) done(err);
+                done();
+            });
+        });
     });
 
-    after(function(done) {
+    after(done => {
         mongoose.connection.close();
         done();
     });
 
-    beforeEach(function(done) {
-        var account = new Account({
-            username: '12345',
-            password: 'testy'
-        });
 
-        account.save(function(error) {
-            if (error) console.log('error' + error.message);
-            else console.log('no error');
-            done();
-        });
+    it('should create a new user account', done => {
+        request
+            .post('/api/register')
+            .send({
+                username: 'testUser',
+                password: 'testPassword'
+            })
+            .expect(200)
+            .end((err, res) => {
+                should.not.exist(err);
+                console.log('HEREEEE ', err, res.body)
+                done()
+            })
     });
-
-    it('find a user by username', function(done) {
-        Account.findOne({ username: '12345' }, function(err, account) {
-            account.username.should.eql('12345');
-            console.log("   username: ", account.username);
-            done();
-        });
-    });
-
-    afterEach(function(done) {
-        Account.remove({}, function() {
-            done();
-        });
-     });
-
 });

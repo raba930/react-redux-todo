@@ -36,7 +36,7 @@ app.use(function(req, res, next) {
 app.use('/', routes);
 
 // passport config
-var Account = require('./models/account');
+var Account = require('./models/Account');
 passport.use(new LocalStrategy(Account.authenticate()));
 passport.use(new UniqueTokenStrategy(
     function(token, done) {
