@@ -6,5 +6,4 @@ dependencies:
     - make install
 test:
   override:
-    - cd backend && yarn run test
-    - cd frontend && yarn run test
+    - make test

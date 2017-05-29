@@ -7,6 +7,10 @@ help:
 	@echo "To install backend deps run: make install-backend"
 	@echo "\n________________ BUILD ________________ \n"
 	@echo "For building frontend run: make build-frontend"
+	@echo "\n________________ TESTS ________________ \n"
+	@echo "To start all tests run: make test"
+	@echo "To start backend tests run: make start-backend-tests"
+	@echo "To start frontend tests in watch mode run: make start-frontend-tests"
 	@echo "\n________________ START ________________ \n"
 	@echo "To start production version run: make start-prod"
 	@echo "To start development version run:"
@@ -57,3 +61,7 @@ start-backend-tests:
 	export TD_ENV=test && \
 	cd backend && \
 	yarn run test
+
+test:
+	$(MAKE) start-backend-tests
+	export CI=true && $(MAKE) start-frontend-tests
