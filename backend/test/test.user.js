@@ -1,45 +1,99 @@
-var should = require("should");
-var mongoose = require('mongoose');
-var Account = require("../models/account.js");
-var db;
+import http from 'http';
+import app from '../app';
+import should from 'should';
+import mongoose from 'mongoose';
+import supertest from 'supertest';
+import Account from '../models/Account';
+import _ from 'underscore';
 
-describe('Account', function() {
+let db, request;
+const port = process.env.TD_TEST_PORT || 3001;
+const server = http.createServer(app);
 
-    before(function(done) {
-        db = mongoose.connect('mongodb://localhost/test');
-            done();
-    });
+describe('Account', () => {
 
-    after(function(done) {
-        mongoose.connection.close();
-        done();
-    });
-
-    beforeEach(function(done) {
-        var account = new Account({
-            username: '12345',
-            password: 'testy'
-        });
-
-        account.save(function(error) {
-            if (error) console.log('error' + error.message);
-            else console.log('no error');
+    before(done => {
+        /*eslint no-console: false*/
+        console.log('Database name -> ', mongoose.connection.name ,' \n  Env mode -> ', process.env.TD_ENV, '\n')
+        // set port
+        app.set('port', port);
+        // start app server
+        server.listen(port);
+        request = supertest('http://localhost:' + port);
+        db = mongoose.connection;
+        db.once('open', () => {
             done();
         });
     });
 
-    it('find a user by username', function(done) {
-        Account.findOne({ username: '12345' }, function(err, account) {
-            account.username.should.eql('12345');
-            console.log("   username: ", account.username);
-            done();
+    after(done => {
+        Account.remove(() => {
+            mongoose.connection.close();
+            server.close();
+            done()
         });
     });
 
-    afterEach(function(done) {
-        Account.remove({}, function() {
-            done();
-        });
-     });
+    beforeEach(done => {
+        Account.remove(done);
+    });
 
+    describe('Registration', () => {
+        const user = {
+            username: 'testUser',
+            password: 'testPassword'
+        };
+        it('should create a new user account', done => {
+            request
+                .post('/api/register')
+                .send(user)
+                .expect(200)
+                .end((err, res) => {
+                    should.not.exist(err);
+                    Account.find({}, (err, docs) => {
+                        should.not.exist(err);
+                        // check saved username
+                        docs[0].username.should.equal(user.username);
+                        done();
+                    });
+                });
+        });
+        it('should save & return the same token', done => {
+            request
+                .post('/api/register')
+                .send(user)
+                .expect(200)
+                .end((err, res) => {
+                    should.not.exist(err);
+                    const token = res.body.token;
+                    Account.find({}, (err, docs) => {
+                        should.not.exist(err);
+                        // check returned token
+                        docs[0].token.should.equal(token);
+                        done();
+                    });
+                });
+        });
+        it('should fail & return 400 when body is empty', done => {
+            request
+                .post('/api/register')
+                .send(_.omit(user, 'password'))
+                .expect(400)
+                .end(done);
+        });
+        it('should fail & return 400 when username is not provided', done => {
+            request
+                .post('/api/register')
+                .send(_.omit(user, 'username'))
+                .expect(400)
+                .end(done);
+        });
+        it('should fail & return 400 when password is not provided', done => {
+            request
+                .post('/api/register')
+                .send(_.omit(user, 'password'))
+                .expect(400)
+                .end(done);
+        });
+    })
 });

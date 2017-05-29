@@ -1,11 +1,16 @@
 import mongoose from 'mongoose';
 import passportLocalMongoose from'passport-local-mongoose';
-let Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-var Account = new Schema({
+const Account = new Schema({
     username: String,
     password: String,
-    token: String
+    token: String,
+    todos: [{
+        text: String,
+        info: String,
+        completed: Boolean
+    }]
 });
 
 Account.plugin(passportLocalMongoose);

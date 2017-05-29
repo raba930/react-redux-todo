@@ -1,4 +1,4 @@
-// create acc
+# create acc
 
 curl -X POST \
   http://127.0.0.1:3000/api/register \
@@ -10,8 +10,7 @@ curl -X POST \
     "password": "123"
 }'
 
-
-// login
+# login
 
 curl -X POST \
   http://127.0.0.1:3000/api/login \
@@ -24,7 +23,7 @@ curl -X POST \
 }'
 
 
-// ping
+# ping
 
 curl -X POST \
   http://127.0.0.1:3000/ping \
@@ -35,5 +34,37 @@ curl -X POST \
     "token": "<token>"
 }'
 
+# get todos
 
-curl 'http://127.0.0.1:3000/api/login' -H 'Pragma: no-cache' -H 'Origin: http://localhost:3001' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: en-US,en;q=0.8,de;q=0.6,hr;q=0.4' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.89 Safari/537.36' -H 'content-type: application/json' -H 'Accept: */*' -H 'Cache-Control: no-cache' -H 'Referer: http://localhost:3001/login' -H 'Connection: keep-alive' --data-binary '{"email":"asdf","password":"123"}' --compressed
+curl -X GET \
+  http://127.0.0.1:3000/todos \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -H 'postman-token: 070d2af6-8e66-3014-e26c-4d526411f7b9' \
+  -H 'token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYXNkZiJ9.NEAenZYXYi8yVDzkikds1SHuohkN1w76K25MlIm5cyY'
+
+
+# add todo
+
+curl -X PUT \
+  http://127.0.0.1:3000/todo/add \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -H 'postman-token: 95fad2e6-423c-b923-89a6-82ccc29e1187' \
+  -H 'token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYXNkZiJ9.NEAenZYXYi8yVDzkikds1SHuohkN1w76K25MlIm5cyY' \
+  -d '{
+  "todo": {
+    "text": "todotext",
+    "completed": false,
+    "info": "tt"
+  }
+}'
+
+# remove todo
+
+curl -X DELETE \
+  http://127.0.0.1:3000/todo/remove/5926cef01fed153af56cd35f \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -H 'postman-token: 481ca9d6-bac2-a1c5-5a11-94ca7671de23' \
+  -H 'token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYXNkZiJ9.NEAenZYXYi8yVDzkikds1SHuohkN1w76K25MlIm5cyY'
