@@ -18,7 +18,7 @@ help:
 build-frontend:
 	rm -rf backend/public
 	mkdir -p backend/public
-	cd frontend && yarn run build
+	export TD_ENV=prod && cd frontend && yarn run build
 	cp -a frontend/build/. backend/public/
 
 install:
@@ -32,15 +32,28 @@ install-backend:
 	cd backend && yarn
 
 start-prod:
-	$(MAKE) install
-	$(MAKE) build-frontend
-	cd backend && yarn run start
+	export TD_ENV=prod && \
+	$(MAKE) install && \
+	$(MAKE) build-frontend && \
+	cd backend && \
+	yarn run start
 
 start-backend:
-	cd backend &&  yarn run start
+	export TD_ENV=dev && \
+	cd backend && \
+	yarn run start
 
 start-frontend:
-	cd frontend && PORT=3001 yarn run start
+	export TD_ENV=dev && \
+	cd frontend && \
+	PORT=3001 yarn run start
 
 start-frontend-tests:
-	cd frontend && yarn run test
+	export TD_ENV=test && \
+	cd frontend && \
+	yarn run test
+
+start-backend-tests:
+	export TD_ENV=test && \
+	cd backend && \
+	yarn run test

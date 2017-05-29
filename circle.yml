@@ -1,9 +1,10 @@
+machine:
+  environment:
+    TD_ENV: test
 dependencies:
   override:
-    # - make install
-    - make install-frontend
+    - make install
 test:
   override:
-    # change npm with yarn
+    - cd backend && yarn run test
     - cd frontend && yarn run test
-    # - npm run test --prefix /backend
