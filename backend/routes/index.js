@@ -56,7 +56,10 @@ router.post('/api/register', function(req, res) {
     var token = jwt.encode({user: req.body.username}, dbConfig.secret);
     Account.register(new Account({ username : req.body.username, token: token}), req.body.password, function(err, account) {
         if (err) {
-            return res.status(500).json({ error : err.message });
+            if (err.name === 'UserExistsError') {
+                return res.status(409).send(err);
+            }
+            return res.sendStatus(500);
         }
         res.json({status: 200, username: req.body.username, token: token});
     });

@@ -13,8 +13,8 @@ const server = http.createServer(app);
 describe('Account', () => {
 
     before(done => {
-        /*eslint no-console: false*/
-        console.log('Database name -> ', mongoose.connection.name ,' \n  Env mode -> ', process.env.TD_ENV, '\n')
+        /*eslint no-console: 0*/
+        console.log('Database name -> ', mongoose.connection.name ,' \n  Env mode -> ', process.env.TD_ENV, '\n');
         // set port
         app.set('port', port);
         // start app server
@@ -30,7 +30,7 @@ describe('Account', () => {
         Account.remove(() => {
             mongoose.connection.close();
             server.close();
-            done()
+            done();
         });
     });
 
@@ -72,6 +72,25 @@ describe('Account', () => {
                         docs[0].token.should.equal(token);
                         done();
                     });
+                });
+        });
+        it('should fail to register user with existing username', done => {
+            request
+                .post('/api/register')
+                .send(user)
+                .expect(200)
+                .end((err, res) => {
+                    should.not.exist(err);
+                    request
+                        .post('/api/register')
+                        .send(user)
+                        .expect(409)
+                        .end((err, res) => {
+                            should.not.exist(err);
+                            res.body.name.should.equal('UserExistsError');
+                            done();
+                        });
+
                 });
         });
         it('should fail & return 400 when body is empty', done => {
