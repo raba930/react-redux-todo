@@ -8,8 +8,9 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var UniqueTokenStrategy = require('passport-unique-token').Strategy;
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var accountRoutes = require('./routes/account');
+var todoRoutes = require('./routes/todo');
+var indexRoutes = require('./routes/index');
 //import favicon from 'serve-favicon';
 
 var app = express();
@@ -33,7 +34,11 @@ app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
     next();
 });
-app.use('/', routes);
+
+
+app.use('/account', accountRoutes);
+app.use('/todo', todoRoutes);
+app.use('/', indexRoutes);
 
 // passport config
 var Account = require('./models/Account');

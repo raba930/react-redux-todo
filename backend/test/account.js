@@ -46,7 +46,7 @@ describe('Account', () => {
         };
         it('should create a new user account', done => {
             request
-                .post('/api/register')
+                .post('/account/register')
                 .send(user)
                 .expect(200)
                 .end((err, res) => {
@@ -61,7 +61,7 @@ describe('Account', () => {
         });
         it('should save & return the same token', done => {
             request
-                .post('/api/register')
+                .post('/account/register')
                 .send(user)
                 .expect(200)
                 .end((err, res) => {
@@ -77,13 +77,13 @@ describe('Account', () => {
         });
         it('should fail to register user with existing username', done => {
             request
-                .post('/api/register')
+                .post('/account/register')
                 .send(user)
                 .expect(200)
                 .end((err, res) => {
                     should.not.exist(err);
                     request
-                        .post('/api/register')
+                        .post('/account/register')
                         .send(user)
                         .expect(409)
                         .end((err, res) => {
@@ -96,21 +96,21 @@ describe('Account', () => {
         });
         it('should fail & return 400 when body is empty', done => {
             request
-                .post('/api/register')
+                .post('/account/register')
                 .send(_.omit(user, 'password'))
                 .expect(400)
                 .end(done);
         });
         it('should fail & return 400 when username is not provided', done => {
             request
-                .post('/api/register')
+                .post('/account/register')
                 .send(_.omit(user, 'username'))
                 .expect(400)
                 .end(done);
         });
         it('should fail & return 400 when password is not provided', done => {
             request
-                .post('/api/register')
+                .post('/account/register')
                 .send(_.omit(user, 'password'))
                 .expect(400)
                 .end(done);
@@ -124,7 +124,7 @@ describe('Account', () => {
         const registerUser = returnToken => {
             return new Promise((resolve, reject) => {
                 request
-                    .post('/api/register')
+                    .post('/account/register')
                     .send(user)
                     .expect(200)
                     .end((err, res) => {
@@ -140,7 +140,7 @@ describe('Account', () => {
             registerUser()
                 .then(() => {
                     request
-                        .post('/api/login')
+                        .post('/account/login')
                         .send(user)
                         .expect(200)
                         .end(done);
@@ -151,7 +151,7 @@ describe('Account', () => {
             registerUser(true)
                 .then((token) => {
                     request
-                        .post('/api/token')
+                        .post('/account/token')
                         .set({token: token})
                         .expect(200)
                         .end(done);
@@ -162,7 +162,7 @@ describe('Account', () => {
             registerUser(true)
                 .then((token) => {
                     request
-                        .post('/api/login')
+                        .post('/account/login')
                         .send(user)
                         .expect(200)
                         .end((err, res) => {
@@ -179,7 +179,7 @@ describe('Account', () => {
                     // change correct token
                     token = token + 'tt';
                     request
-                        .post('/api/token')
+                        .post('/account/token')
                         .set({token: token})
                         .expect(401)
                         .end(done);
@@ -188,21 +188,21 @@ describe('Account', () => {
         });
         it('should fail to login unregistred user', done => {
             request
-                .post('/api/login')
+                .post('/account/login')
                 .send(user)
                 .expect(401)
                 .end(done);
         });
         it('should fail to login user without password', done => {
             request
-                .post('/api/login')
+                .post('/account/login')
                 .send(_.omit(user, 'password'))
                 .expect(400)
                 .end(done);
         });
         it('should fail to login user without username', done => {
             request
-                .post('/api/login')
+                .post('/account/login')
                 .send(_.omit(user, 'username'))
                 .expect(400)
                 .end(done);
