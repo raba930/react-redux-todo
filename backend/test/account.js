@@ -34,7 +34,8 @@ describe('Account', () => {
         });
     });
 
-    beforeEach(done => {
+    beforeEach(function(done) {
+        console.log('\x1b[36m', this.currentTest.title);
         Account.remove(done);
     });
 
@@ -114,5 +115,97 @@ describe('Account', () => {
                 .expect(400)
                 .end(done);
         });
-    })
+    });
+    describe('login', () => {
+        const user = {
+            username: 'testUser',
+            password: 'testPass'
+        };
+        const registerUser = returnToken => {
+            return new Promise((resolve, reject) => {
+                request
+                    .post('/api/register')
+                    .send(user)
+                    .expect(200)
+                    .end((err, res) => {
+                        if (err) return reject(err);
+                        if (returnToken)
+                            resolve(res.body.token);
+                        else
+                            resolve();
+                    });
+            });
+        };
+        it('should login user', done => {
+            registerUser()
+                .then(() => {
+                    request
+                        .post('/api/login')
+                        .send(user)
+                        .expect(200)
+                        .end(done);
+                })
+                .catch(err => done(err));
+        });
+        it('should get logged in only resource', done => {
+            registerUser(true)
+                .then((token) => {
+                    request
+                        .post('/api/token')
+                        .set({token: token})
+                        .expect(200)
+                        .end(done);
+                })
+                .catch(err => done(err));
+        });
+        it('should return right token', done => {
+            registerUser(true)
+                .then((token) => {
+                    request
+                        .post('/api/login')
+                        .send(user)
+                        .expect(200)
+                        .end((err, res) => {
+                            should.not.exist(err);
+                            res.body.token.should.equal(token);
+                            done();
+                        });
+                })
+                .catch(err => done(err));
+        });
+        it('should fail to get logged in only resource with wrong token', done => {
+            registerUser(true)
+                .then((token) => {
+                    // change correct token
+                    token = token + 'tt';
+                    request
+                        .post('/api/token')
+                        .set({token: token})
+                        .expect(401)
+                        .end(done);
+                })
+                .catch(err => done(err));
+        });
+        it('should fail to login unregistred user', done => {
+            request
+                .post('/api/login')
+                .send(user)
+                .expect(401)
+                .end(done);
+        });
+        it('should fail to login user without password', done => {
+            request
+                .post('/api/login')
+                .send(_.omit(user, 'password'))
+                .expect(400)
+                .end(done);
+        });
+        it('should fail to login user without username', done => {
+            request
+                .post('/api/login')
+                .send(_.omit(user, 'username'))
+                .expect(400)
+                .end(done);
+        });
+    });
 });
