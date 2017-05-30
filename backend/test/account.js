@@ -54,7 +54,7 @@ describe('Account', () => {
                     Account.find({}, (err, docs) => {
                         should.not.exist(err);
                         // check saved username
-                        docs[0].username.should.equal(user.username);
+                        docs[0].username.should.be.equal(user.username);
                         done();
                     });
                 });
@@ -70,7 +70,7 @@ describe('Account', () => {
                     Account.find({}, (err, docs) => {
                         should.not.exist(err);
                         // check returned token
-                        docs[0].token.should.equal(token);
+                        docs[0].token.should.be.equal(token);
                         done();
                     });
                 });
@@ -88,7 +88,7 @@ describe('Account', () => {
                         .expect(409)
                         .end((err, res) => {
                             should.not.exist(err);
-                            res.body.name.should.equal('UserExistsError');
+                            res.body.name.should.be.equal('UserExistsError');
                             done();
                         });
 
@@ -167,7 +167,7 @@ describe('Account', () => {
                         .expect(200)
                         .end((err, res) => {
                             should.not.exist(err);
-                            res.body.token.should.equal(token);
+                            res.body.token.should.be.equal(token);
                             done();
                         });
                 })
