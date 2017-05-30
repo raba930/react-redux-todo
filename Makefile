@@ -26,6 +26,7 @@ build-frontend:
 	cp -a frontend/build/. backend/public/
 
 install:
+	yarn
 	$(MAKE) install-frontend
 	$(MAKE) install-backend
 
@@ -58,10 +59,12 @@ start-frontend-tests:
 	yarn run test
 
 start-backend-tests:
-	export TD_ENV=test && \
-	cd backend && \
-	yarn run test
+	./backend/test/allTests.sh
 
 test:
+ifeq (${file},)
 	$(MAKE) start-backend-tests
 	export CI=true && $(MAKE) start-frontend-tests
+else
+	export TD_ENV=test && mocha --compilers js:babel-core/register backend/test/${file}.js
+endif

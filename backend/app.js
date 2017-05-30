@@ -36,7 +36,7 @@ app.use((req, res, next) => {
     next();
 });
 
-
+// routes setup
 app.use('/account', accountRoutes);
 app.use('/todo', todoRoutes);
 app.use('/', indexRoutes);
