@@ -4,7 +4,7 @@ import { ACC_LOADING, LOG_IN_REQ_SUC, LOG_IN_REQ_FAIL, TOKEN_IS_OK, TOKEN_IS_NOT
 
 const sendLoginReq = (username, password) => {
     let props = {
-        url: API_PREFIX + '/api/login',
+        url: API_PREFIX + '/account/login',
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -19,7 +19,7 @@ const sendLoginReq = (username, password) => {
 
 const sendSignUpReq = (username, password) => {
     let props = {
-        url: API_PREFIX + '/api/register',
+        url: API_PREFIX + '/account/register',
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -34,7 +34,7 @@ const sendSignUpReq = (username, password) => {
 
 const sendCheckTokenReq = (token) => {
     let props = {
-        url: API_PREFIX + '/api/token',
+        url: API_PREFIX + '/account/token',
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

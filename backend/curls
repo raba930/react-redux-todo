@@ -1,7 +1,7 @@
 # create acc
 
 curl -X POST \
-  http://127.0.0.1:3000/api/register \
+  http://127.0.0.1:3000/account/register \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/json' \
   -H 'postman-token: 2a006abc-653d-a7b5-53b7-b1d20f96836c' \
@@ -13,7 +13,7 @@ curl -X POST \
 # login
 
 curl -X POST \
-  http://127.0.0.1:3000/api/login \
+  http://127.0.0.1:3000/account/login \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/json' \
   -H 'postman-token: 18ebd7bc-c412-199b-9921-e7c7a482ec98' \
