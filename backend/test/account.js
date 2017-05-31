@@ -21,9 +21,7 @@ describe('Account', () => {
         server.listen(port);
         request = supertest('http://localhost:' + port);
         db = mongoose.connection;
-        db.once('open', () => {
-            done();
-        });
+        db.once('open', done);
     });
 
     after(done => {
