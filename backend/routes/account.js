@@ -24,7 +24,10 @@ router.post('/register', function(req, res) {
 });
 
 router.post('/login', passport.authenticate('local', { session: false }), function(req, res) {
-    res.json({token: req.user.token});
+    res.json({
+        token: req.user.token,
+        todos: req.user.todos
+    });
 });
 
 router.post('/token', passport.authenticate('token', { session: false }), function(req, res) {

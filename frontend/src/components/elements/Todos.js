@@ -9,8 +9,8 @@ const TodosList = styled.ul`
 
 const Todos = ({ todos, filter, removeTodo, toggleComplete }) => {
     const visibleTodos = getVisibleTodos(todos, filter);
-    const parsedTodos = visibleTodos.map((todo, todoInd) => {
-        return <Todo todo={todo} key={todoInd} index={todoInd} removeTodo={removeTodo} toggleComplete={toggleComplete} />;
+    const parsedTodos = visibleTodos.map((todo, ind) => {
+        return <Todo todo={todo} key={ind} removeTodo={removeTodo} toggleComplete={toggleComplete} />;
     });
     return (
         <TodosList>

@@ -17,7 +17,11 @@ class TodoList extends Component {
     addNewTodo() {
         let val = this.refs.todoInp.value;
         if (!val) return;
-        this.props.addTodo(val);
+        this.props.addTodo({
+            text: val,
+            completed: false,
+            info: ''
+        });
         this.refs.todoInp.value = '';
     }
     removeTodo(ev) {
@@ -45,11 +49,12 @@ class TodoList extends Component {
         };
         return (
             <div className="todoWrap">
+                {this.props.error ? <span className="error">{this.props.error}</span> : ''}
                 <input type="text" ref="todoInp" className="todoInput" placeholder="Todo text" onKeyPress={this.keyDown} style={inputStyle} />
                 <Button right onClick={this.addNewTodo}>Add</Button>
                 <Button control onClick={this.toggleCompletedTodos}>{this.props.filter.filter === 'SHOW_ALL' ? 'Hide' : 'Show'} completed todos</Button>
                 <Button control right onClick={this.removeCompletedTodos}>Remove completed todos</Button>
-                <Todos todos={this.props.todos.todos} filter={this.props.filter.filter} removeTodo={this.removeTodo} toggleComplete={this.toggleComplete}/>
+                <Todos todos={this.props.todos} filter={this.props.filter.filter} removeTodo={this.removeTodo} toggleComplete={this.toggleComplete}/>
             </div>
         );
     }

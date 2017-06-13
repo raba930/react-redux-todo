@@ -51,7 +51,7 @@ start-backend:
 start-frontend:
 	export TD_ENV=dev && \
 	cd frontend && \
-	PORT=3001 yarn run start
+	PORT=3002 yarn run start
 
 start-frontend-tests:
 	export TD_ENV=test && \

@@ -5,7 +5,7 @@ import TodoControls from './TodoControls';
 
 const Todo = (props) => {
     return (
-        <TodoListItem completed={props.todo.completed} id={props.index}>
+        <TodoListItem completed={props.todo.completed} id={props.todo._id}>
             <TodoText>{props.todo.text}</TodoText>
             <TodoControls
                 toggleComplete={props.toggleComplete}
