@@ -4,7 +4,7 @@ import Account from '../models/Account';
 import _ from 'underscore';
 
 let router = express.Router();
-router.put('/add', passport.authenticate('token', { session: false }), function(req, res) {
+router.put('/', passport.authenticate('token', { session: false }), function(req, res) {
     const todos = req.body.todos;
     // use mongoose validators instead of ifs
     if (!todos || !todos.length) {
@@ -23,7 +23,7 @@ router.put('/add', passport.authenticate('token', { session: false }), function(
     });
 });
 
-router.delete('/remove/:id', passport.authenticate('token', { session: false }), function(req, res) {
+router.delete('/:id', passport.authenticate('token', { session: false }), function(req, res) {
     Account.update({
         token: req.user.token
     }, { $pull: {
@@ -34,7 +34,7 @@ router.delete('/remove/:id', passport.authenticate('token', { session: false }),
     });
 });
 
-router.get('/todos', passport.authenticate('token', { session: false }), function(req, res) {
+router.get('/', passport.authenticate('token', { session: false }), function(req, res) {
     Account.findOne({
         token: req.user.token
     }, (err, data) => {

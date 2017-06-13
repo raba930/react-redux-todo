@@ -57,21 +57,21 @@ describe('Todo', () => {
     describe('Bad requests', () => {
         it('should return 400 for GET request on /todos without token', done => {
             request
-                .get('/todo/todos')
+                .get('/todo')
                 .expect(400)
                 .end(done);
         });
 
         it('should return 400 for PUT request on /add without token', done => {
             request
-                .put('/todo/add')
+                .put('/todo')
                 .expect(400)
                 .end(done);
         });
 
         it('should return 400 for DELETE request on /remove/123 without token', done => {
             request
-                .delete('/todo/remove/123')
+                .delete('/todo/123')
                 .expect(400)
                 .end(done);
         });
@@ -80,7 +80,7 @@ describe('Todo', () => {
             const wrongToken = _.clone(token);
             wrongToken.token += '123';
             request
-                .get('/todo/todos')
+                .get('/todo')
                 .set(wrongToken)
                 .expect(401)
                 .end(done);
@@ -90,7 +90,7 @@ describe('Todo', () => {
             const wrongToken = _.clone(token);
             wrongToken.token += '123';
             request
-                .put('/todo/add')
+                .put('/todo')
                 .set(wrongToken)
                 .expect(401)
                 .end(done);
@@ -100,7 +100,7 @@ describe('Todo', () => {
             const wrongToken = _.clone(token);
             wrongToken.token += '123';
             request
-                .delete('/todo/remove/123')
+                .delete('/todo/123')
                 .set(wrongToken)
                 .expect(401)
                 .end(done);
@@ -108,7 +108,7 @@ describe('Todo', () => {
 
         it('should return 400 for PUT request on /add without todos', done => {
             request
-                .put('/todo/add')
+                .put('/todo')
                 .set(token)
                 .expect(400)
                 .end(done);
@@ -124,7 +124,7 @@ describe('Todo', () => {
                 completed: true
             }];
             request
-                .put('/todo/add')
+                .put('/todo')
                 .set(token)
                 .send({todos: todos})
                 .expect(400)
@@ -133,7 +133,7 @@ describe('Todo', () => {
 
         it('should return 404 for DELETE request on /remove without id', done => {
             request
-                .delete('/todo/remove')
+                .delete('/todo')
                 .set(token)
                 .expect(404)
                 .end(done);
@@ -142,7 +142,7 @@ describe('Todo', () => {
 
     it('should return empty todo list', done => {
         request
-            .get('/todo/todos')
+            .get('/todo')
             .set(token)
             .expect(200)
             .end((err, res) => {
@@ -159,7 +159,7 @@ describe('Todo', () => {
             completed: false
         }];
         request
-            .put('/todo/add')
+            .put('/todo')
             .set(token)
             .send({todos: todos})
             .expect(200)
@@ -185,21 +185,21 @@ describe('Todo', () => {
             completed: true
         }];
         request
-            .put('/todo/add')
+            .put('/todo')
             .set(token)
             .send({todos: [todos[0]]})
             .expect(200)
             .end((err, res) => {
                 should.not.exist(err);
                 request
-                    .put('/todo/add')
+                    .put('/todo')
                     .set(token)
                     .send({todos: [todos[1]]})
                     .expect(200)
                     .end((err, res) => {
                         should.not.exist(err);
                         request
-                            .get('/todo/todos')
+                            .get('/todo')
                             .set(token)
                             .expect(200)
                             .end((err, res) => {
@@ -227,7 +227,7 @@ describe('Todo', () => {
             completed: false
         }];
         request
-            .put('/todo/add')
+            .put('/todo')
             .set(token)
             .send({todos: todos})
             .expect(200)
@@ -239,7 +239,7 @@ describe('Todo', () => {
                     data.todos.length.should.be.equal(3);
                     _.each(pairs, pair => pair[0].should.be.eql(pair[1]));
                     request
-                        .get('/todo/todos')
+                        .get('/todo')
                         .set(token)
                         .expect(200)
                         .end((err, res) => {

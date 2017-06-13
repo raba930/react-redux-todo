@@ -19,7 +19,7 @@ const sendLoginReq = (username, password) => {
 
 const sendAddTodoReq = todo => {
     let props = {
-        url: API_PREFIX + '/todo/add',
+        url: API_PREFIX + '/todo',
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ const sendAddTodoReq = todo => {
 
 const sendRemoveTodoReq = id => {
     let props = {
-        url: API_PREFIX + '/todo/remove/' + id,
+        url: API_PREFIX + '/todo/' + id,
         method: 'DELETE',
         headers: {
             'Token': localStorage.accessToken
