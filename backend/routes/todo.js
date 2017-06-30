@@ -13,13 +13,15 @@ router.put('/', passport.authenticate('token', { session: false }), function(req
     if (_.find(todos, todo => !todo.text )) {
         return res.status(400).json({error: 'Todo text missing'});
     }
-    Account.update({
+    Account.findOneAndUpdate({
         token: req.user.token
-    }, { $pushAll: {
-        todos: todos
-    }   }, err => {
+    }, { $push: {
+        todos: { $each: todos }
+    }   }, {
+        new: true
+    }, (err, acc) => {
         if (err) res.status(500).json(err);
-        else res.json({status: 200});
+        else res.json({todos: acc.todos});
     });
 });
 

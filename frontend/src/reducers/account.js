@@ -62,7 +62,7 @@ export default(state = initialState, action) => {
     case constants.ADD_TODO:
         return Object.assign({}, state, {
             loading: false,
-            todos: [...state.todos, action.todo]
+            todos: action.todos
         });
     case constants.REMOVE_TODO:
         return Object.assign({}, state, {

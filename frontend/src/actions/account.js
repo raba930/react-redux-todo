@@ -148,10 +148,10 @@ export const addTodoInfo = (id, todoInfo) => {
         todoInfo
     };
 };
-const addTodoSuc = todo => {
+const addTodoSuc = resp => {
     return {
         type: constants.ADD_TODO,
-        todo
+        todos: resp.todos
     };
 };
 const addTodoFail = error => {
@@ -176,7 +176,7 @@ export const addTodo = todo => {
     return dispatch => {
         dispatch(loading());
         return sendAddTodoReq(todo).then(
-            response => dispatch(addTodoSuc(todo)),
+            response => dispatch(addTodoSuc(response)),
             error => dispatch(addTodoFail(error))
         );
     };
