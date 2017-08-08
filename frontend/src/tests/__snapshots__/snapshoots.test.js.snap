@@ -57,7 +57,7 @@ exports[`Details snapshots Not completed todo 1`] = `
 exports[`Todo snapshots Completed todo 1`] = `
 <li
   className="card-panel light-green lighten-1"
-  id={undefined}>
+  id="598a1ad3edfb1c6c37b03769">
   <span
     className="todo-text">
     second
@@ -76,7 +76,7 @@ exports[`Todo snapshots Completed todo 1`] = `
       className="iAwBni"
       onClick={undefined}>
       <a
-        href="/details/undefined"
+        href="/details/598a1ad3edfb1c6c37b03769"
         onClick={[Function]}>
         <i
           className="small material-icons info">
@@ -99,7 +99,7 @@ exports[`Todo snapshots Completed todo 1`] = `
 exports[`Todo snapshots Not completed todo 1`] = `
 <li
   className="card-panel light-blue lighten-1"
-  id={undefined}>
+  id="598a1ad0edfb1c6c37b03768">
   <span
     className="todo-text">
     first
@@ -118,7 +118,7 @@ exports[`Todo snapshots Not completed todo 1`] = `
       className="iAwBni"
       onClick={undefined}>
       <a
-        href="/details/undefined"
+        href="/details/598a1ad0edfb1c6c37b03768"
         onClick={[Function]}>
         <i
           className="small material-icons info">
@@ -143,7 +143,7 @@ exports[`Todos snapshots Active todos 1`] = `
   className="dNIryj">
   <li
     className="card-panel light-blue lighten-1"
-    id={0}>
+    id="598a1ad0edfb1c6c37b03768">
     <span
       className="todo-text">
       first
@@ -162,7 +162,7 @@ exports[`Todos snapshots Active todos 1`] = `
         className="iAwBni"
         onClick={undefined}>
         <a
-          href="/details/0"
+          href="/details/598a1ad0edfb1c6c37b03768"
           onClick={[Function]}>
           <i
             className="small material-icons info">
@@ -188,7 +188,7 @@ exports[`Todos snapshots All todos 1`] = `
   className="dNIryj">
   <li
     className="card-panel light-blue lighten-1"
-    id={0}>
+    id="598a1ad0edfb1c6c37b03768">
     <span
       className="todo-text">
       first
@@ -207,7 +207,7 @@ exports[`Todos snapshots All todos 1`] = `
         className="iAwBni"
         onClick={undefined}>
         <a
-          href="/details/0"
+          href="/details/598a1ad0edfb1c6c37b03768"
           onClick={[Function]}>
           <i
             className="small material-icons info">
@@ -227,7 +227,7 @@ exports[`Todos snapshots All todos 1`] = `
   </li>
   <li
     className="card-panel light-green lighten-1"
-    id={1}>
+    id="598a1ad3edfb1c6c37b03769">
     <span
       className="todo-text">
       second
@@ -246,7 +246,7 @@ exports[`Todos snapshots All todos 1`] = `
         className="iAwBni"
         onClick={undefined}>
         <a
-          href="/details/1"
+          href="/details/598a1ad3edfb1c6c37b03769"
           onClick={[Function]}>
           <i
             className="small material-icons info">
@@ -266,7 +266,7 @@ exports[`Todos snapshots All todos 1`] = `
   </li>
   <li
     className="card-panel light-green lighten-1"
-    id={2}>
+    id="598a1ad5edfb1c6c37b0376a">
     <span
       className="todo-text">
       third
@@ -285,7 +285,7 @@ exports[`Todos snapshots All todos 1`] = `
         className="iAwBni"
         onClick={undefined}>
         <a
-          href="/details/2"
+          href="/details/598a1ad5edfb1c6c37b0376a"
           onClick={[Function]}>
           <i
             className="small material-icons info">

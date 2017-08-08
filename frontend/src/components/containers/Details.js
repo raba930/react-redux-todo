@@ -3,7 +3,7 @@ import * as actions from '../../actions/account';
 import Details from '../views/Details';
 
 const mapStateToProps = (state, prop) => {
-    const todo = state.account.todos.find((td, ind) => ind === Number(prop.match.params.id));
+    const todo = state.account.todos.find(todo => todo._id === prop.match.params.id);
     return {
         todo: todo
     };

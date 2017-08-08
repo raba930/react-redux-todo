@@ -12,7 +12,7 @@ const Todo = (props) => {
                 todoInfo={props.todoInfo}
                 removeTodo={props.removeTodo}
                 completed={props.todo.completed}
-                index={props.index}
+                id={props.todo._id}
             >
             </TodoControls>
         </TodoListItem>

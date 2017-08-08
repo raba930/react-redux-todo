@@ -10,15 +10,18 @@ const propSetup = filter => {
         todos: [{
             text: 'first',
             completed: false,
-            info: 'f'
+            info: 'f',
+            _id: '598a1ad0edfb1c6c37b03768'
         },{
             text: 'second',
             completed: true,
-            info: 's'
+            info: 's',
+            _id: '598a1ad3edfb1c6c37b03769'
         },{
             text: 'third',
             completed: true,
-            info: 't'
+            info: 't',
+            _id: '598a1ad5edfb1c6c37b0376a'
         }],
         filter: filter
     };

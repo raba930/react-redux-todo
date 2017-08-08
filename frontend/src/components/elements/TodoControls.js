@@ -31,8 +31,8 @@ const RemoveSpan = styled.span`
     }
 `;
 
-export default ({toggleComplete, todoInfo, removeTodo, completed, index}) => {
-    const infoLink = '/details/' + index;
+export default ({toggleComplete, todoInfo, removeTodo, completed, id}) => {
+    const infoLink = '/details/' + id;
     let icon;
     completed ? icon = 'restore' : icon = 'done';
     return (
