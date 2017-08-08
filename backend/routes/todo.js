@@ -25,6 +25,20 @@ router.put('/', passport.authenticate('token', { session: false }), function(req
     });
 });
 
+router.post('/completed/:id', passport.authenticate('token', { session: false }), function(req, res) {
+    if (typeof req.body.completed !== 'boolean') return res.status(400).end();
+    Account.update({
+        token: req.user.token,
+        'todos._id': req.params.id
+    }, { $set: {
+        'todos.$.completed': req.body.completed
+    } }, (err, data) => {
+        if (err) res.status(400).json(err);
+        else if (data && data.n === 0) res.status(404).end();
+        else res.json({status: 200});
+    });
+});
+
 router.delete('/:id', passport.authenticate('token', { session: false }), function(req, res) {
     Account.update({
         token: req.user.token

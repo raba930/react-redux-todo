@@ -61,21 +61,18 @@ describe('Todo', () => {
                 .expect(400)
                 .end(done);
         });
-
         it('should return 400 for PUT request on /add without token', done => {
             request
                 .put('/todo')
                 .expect(400)
                 .end(done);
         });
-
         it('should return 400 for DELETE request on /remove/123 without token', done => {
             request
                 .delete('/todo/123')
                 .expect(400)
                 .end(done);
         });
-
         it('should return 401 for GET request on /todos with wrong token', done => {
             const wrongToken = _.clone(token);
             wrongToken.token += '123';
@@ -85,7 +82,6 @@ describe('Todo', () => {
                 .expect(401)
                 .end(done);
         });
-
         it('should return 401 for PUT request on /add with wrong token', done => {
             const wrongToken = _.clone(token);
             wrongToken.token += '123';
@@ -95,7 +91,6 @@ describe('Todo', () => {
                 .expect(401)
                 .end(done);
         });
-
         it('should return 401 for DELETE request on /remove/123 with wrong token', done => {
             const wrongToken = _.clone(token);
             wrongToken.token += '123';
@@ -105,7 +100,6 @@ describe('Todo', () => {
                 .expect(401)
                 .end(done);
         });
-
         it('should return 400 for PUT request on /add without todos', done => {
             request
                 .put('/todo')
@@ -113,7 +107,6 @@ describe('Todo', () => {
                 .expect(400)
                 .end(done);
         });
-
         it('should return 400 for PUT request on /add with todo without text', done => {
             const todos = [{
                 text: 'first',
@@ -130,12 +123,50 @@ describe('Todo', () => {
                 .expect(400)
                 .end(done);
         });
-
         it('should return 404 for DELETE request on /remove without id', done => {
             request
                 .delete('/todo')
                 .set(token)
                 .expect(404)
+                .end(done);
+        });
+        it('should return 404 for toggle completed property of not-existing todo item', done => {
+            request
+                .post('/todo/completed/5981cc56932be96c1d2d4de1')
+                .send({completed: true})
+                .set(token)
+                .expect(404)
+                .end(done);
+        });
+        it('should return 404 for post without id', done => {
+            request
+                .post('/todo/completed/')
+                .send({completed: true})
+                .set(token)
+                .expect(404)
+                .end(done);
+        });
+        it('should return 400 for toggle completed property of todo item with wrong id', done => {
+            request
+                .post('/todo/completed/58846badID')
+                .send({completed: true})
+                .set(token)
+                .expect(400)
+                .end(done);
+        });
+        it('should return 400 for post without payload', done => {
+            request
+                .post('/todo/completed/5981cc56932be96c1d2d4de1')
+                .set(token)
+                .expect(400)
+                .end(done);
+        });
+        it('should return 400 for post with wrong payload', done => {
+            request
+                .post('/todo/completed/58846badID')
+                .send({completed: 'string'})
+                .set(token)
+                .expect(400)
                 .end(done);
         });
     });
@@ -252,4 +283,91 @@ describe('Todo', () => {
                 });
             });
     });
+    it('should add a few todos & flag one as completed', done => {
+        const todos = [{
+            text: 'asdf',
+            info: 'asdsad',
+            completed: false
+        }, {
+            text: 'bassd',
+            info: 'asdsad',
+            completed: false
+        }, {
+            text: 'casdasd',
+            info: 'asdsad',
+            completed: false
+        }];
+        request
+            .put('/todo')
+            .set(token)
+            .send({todos: todos})
+            .expect(200)
+            .end((err, res) => {
+                should.not.exist(err);
+                const id = res.body.todos[0]._id;
+
+                request
+                    .post('/todo/completed/' + id)
+                    .send({completed: true})
+                    .set(token)
+                    .expect(200)
+                    .end((err, res) => {
+                        should.not.exist(err);
+                        Account.findOne(token, (err, data) => {
+                            should.not.exist(err);
+                            data.todos.forEach(t => {
+                                if (t._id.toString() === id)
+                                    t.completed.should.be.equal(true);
+                                else
+                                    t.completed.should.be.equal(false);
+                            });
+                            done();
+                        });
+                    });
+            });
+    });
+    it('should add a few todos & flag one as not completed', done => {
+        const todos = [{
+            text: 'asdf',
+            info: 'asdsad',
+            completed: true
+        }, {
+            text: 'bassd',
+            info: 'asdsad',
+            completed: true
+        }, {
+            text: 'casdasd',
+            info: 'asdsad',
+            completed: true
+        }];
+        request
+            .put('/todo')
+            .set(token)
+            .send({todos: todos})
+            .expect(200)
+            .end((err, res) => {
+                should.not.exist(err);
+                const id = res.body.todos[0]._id;
+
+                request
+                    .post('/todo/completed/' + id)
+                    .send({completed: false})
+                    .set(token)
+                    .expect(200)
+                    .end((err, res) => {
+                        should.not.exist(err);
+                        Account.findOne(token, (err, data) => {
+                            should.not.exist(err);
+                            data.todos.forEach(t => {
+                                if (t._id.toString() === id)
+                                    t.completed.should.be.equal(false);
+                                else
+                                    t.completed.should.be.equal(true);
+                            });
+                            done();
+                        });
+                    });
+            });
+    });
+
 });
