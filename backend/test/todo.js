@@ -169,6 +169,53 @@ describe('Todo', () => {
                 .expect(400)
                 .end(done);
         });
+        it('should return 404 for adding info to not-existing todo item', done => {
+            request
+                .post('/todo/info/5981cc56932be96c1d2d4de1')
+                .send({info: 'text'})
+                .set(token)
+                .expect(404)
+                .end(done);
+        });
+        it('should return 404 for post on todo/info/ without id', done => {
+            request
+                .post('/todo/info/')
+                .send({info: 'text'})
+                .set(token)
+                .expect(404)
+                .end(done);
+        });
+        it('should return 400 for adding info to todo item with wrong id', done => {
+            request
+                .post('/todo/info/58846badID')
+                .send({info: 'text'})
+                .set(token)
+                .expect(400)
+                .end(done);
+        });
+        it('should return 400 for post on todo/info/ without payload', done => {
+            request
+                .post('/todo/info/5981cc56932be96c1d2d4de1')
+                .set(token)
+                .expect(400)
+                .end(done);
+        });
+        it('should return 400 for post on todo/info/ with wrong payload type', done => {
+            request
+                .post('/todo/info/58846badID')
+                .send({info: 3.14})
+                .set(token)
+                .expect(400)
+                .end(done);
+        });
+        it('should return 400 for adding info to todo item with payload without info prop', done => {
+            request
+                .post('/todo/info/5981cc56932be96c1d2d4de1')
+                .send({notinfo: 'text'})
+                .set(token)
+                .expect(400)
+                .end(done);
+        });
     });
 
     it('should return empty todo list', done => {
@@ -369,5 +416,47 @@ describe('Todo', () => {
                     });
             });
     });
-
+    it('should add a few todos & add info to one of them', done => {
+        const todos = [{
+            text: 'asdf',
+            info: '',
+            completed: false
+        }, {
+            text: 'bassd',
+            info: '',
+            completed: false
+        }, {
+            text: 'casdasd',
+            info: '',
+            completed: false
+        }];
+        request
+            .put('/todo')
+            .set(token)
+            .send({todos: todos})
+            .expect(200)
+            .end((err, res) => {
+                should.not.exist(err);
+                const id = res.body.todos[0]._id;
+                const payload = {
+                    info: 'infoText'
+                };
+                request
+                    .post('/todo/info/' + id)
+                    .send(payload)
+                    .set(token)
+                    .expect(200)
+                    .end((err, res) => {
+                        should.not.exist(err);
+                        Account.findOne(token, (err, data) => {
+                            should.not.exist(err);
+                            data.todos.forEach(t => {
+                                if (t._id.toString() === id)
+                                    t.info.should.be.equal(payload.info);
+                            });
+                            done();
+                        });
+                    });
+            });
+    });
 });
