@@ -25,7 +25,6 @@ router.put('/', passport.authenticate('token', { session: false }), function(req
     });
 });
 
-// TODO /removecompleted endpoint
 router.post('/completed/:id', passport.authenticate('token', { session: false }), function(req, res) {
     if (typeof req.body.completed !== 'boolean') return res.status(400).end();
     Account.update({
@@ -50,6 +49,17 @@ router.post('/info/:id', passport.authenticate('token', { session: false }), fun
     } }, (err, data) => {
         if (err) res.status(400).json(err);
         else if (data && data.n === 0) res.status(404).end();
+        else res.json({status: 200});
+    });
+});
+
+router.delete('/completed', passport.authenticate('token', { session: false }), function(req, res) {
+    Account.update({
+        token: req.user.token,
+    }, { $pull: {
+        todos: { completed: true }
+    }   }, (err, data) => {
+        if (err) res.status(500).json(err);
         else res.json({status: 200});
     });
 });

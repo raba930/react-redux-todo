@@ -217,7 +217,6 @@ describe('Todo', () => {
                 .end(done);
         });
     });
-
     it('should return empty todo list', done => {
         request
             .get('/todo')
@@ -454,6 +453,51 @@ describe('Todo', () => {
                                 if (t._id.toString() === id)
                                     t.info.should.be.equal(payload.info);
                             });
+                            done();
+                        });
+                    });
+            });
+    });
+    it('should add a few todos & remove completed', done => {
+        const todos = [{
+            text: 'asdf',
+            info: '',
+            completed: false
+        }, {
+            text: 'bassd',
+            info: '',
+            completed: true
+        }, {
+            text: 'casdasd',
+            info: '',
+            completed: false
+        }, {
+            text: 'zz',
+            info: '',
+            completed: false
+        }, {
+            text: 'ee',
+            info: '',
+            completed: true
+        }];
+        request
+            .put('/todo')
+            .set(token)
+            .send({todos: todos})
+            .expect(200)
+            .end((err, res) => {
+                should.not.exist(err);
+                request
+                    .delete('/todo/completed')
+                    .set(token)
+                    .expect(200)
+                    .end((err, res) => {
+                        should.not.exist(err);
+                        Account.findOne(token, (err, data) => {
+                            should.not.exist(err);
+                            const expectedTodos = todos.filter(todo => !todo.completed);
+                            const actualTodos = data.todos.map(todo => _.pick(todo, ['text', 'info', 'completed']));
+                            actualTodos.should.be.eql(expectedTodos);
                             done();
                         });
                     });
